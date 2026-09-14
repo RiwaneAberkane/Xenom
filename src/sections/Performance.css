@@ -1,0 +1,630 @@
+/* ========================================
+   XENOM — PERFORMANCE
+======================================== */
+
+.performance {
+    position: relative;
+
+    width: 100%;
+    overflow: hidden;
+
+    padding:
+        clamp(90px, 8vw, 145px) var(--page-padding) clamp(90px, 8vw, 140px);
+
+    background:
+        radial-gradient(circle at 75% 35%,
+            rgba(227, 33, 39, 0.035),
+            transparent 30%),
+        #050607;
+
+    color: var(--color-white);
+}
+
+
+/* ========================================
+   TOP
+======================================== */
+
+.performance__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin-bottom: clamp(55px, 6vw, 95px);
+}
+
+.performance__index {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    color: rgba(244, 244, 242, 0.5);
+
+    font-size: 9px;
+
+    letter-spacing: 0.35em;
+
+    text-transform: uppercase;
+}
+
+.performance__index>span:first-child {
+    color: var(--color-white);
+
+    font-size: 12px;
+}
+
+.performance__index-line {
+    width: 45px;
+    height: 1px;
+
+    background: var(--color-red);
+}
+
+.performance__microcopy {
+    color: rgba(244, 244, 242, 0.35);
+
+    font-size: 8px;
+
+    letter-spacing: 0.4em;
+    line-height: 2;
+
+    text-align: right;
+}
+
+
+/* ========================================
+   HEADING
+======================================== */
+
+.performance__heading {
+    position: relative;
+    z-index: 4;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 50px;
+
+    margin-bottom: clamp(40px, 4vw, 65px);
+}
+
+.performance__title {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 1050px;
+
+    font-size: clamp(54px, 7.2vw, 130px);
+    font-weight: 300;
+
+    letter-spacing: 0.07em;
+    line-height: 0.9;
+}
+
+.performance__title-line {
+    display: block;
+
+    overflow: hidden;
+
+    padding-bottom: 0.08em;
+}
+
+.performance__title-line>span {
+    display: block;
+}
+
+.performance__dot {
+    color: var(--color-red);
+}
+
+.performance__intro {
+    max-width: 330px;
+
+    padding-bottom: 8px;
+
+    color: rgba(244, 244, 242, 0.45);
+
+    font-size: 10px;
+
+    letter-spacing: 0.18em;
+    line-height: 1.9;
+
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   VISUAL
+======================================== */
+
+.performance__visual {
+    position: relative;
+
+    width: 100%;
+    height: clamp(430px, 52vw, 820px);
+
+    overflow: hidden;
+
+    background: #030404;
+}
+
+.performance__image {
+    width: 100%;
+    height: 110%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transform: translateY(-5%);
+
+    will-change: transform;
+}
+
+.performance__visual-shade {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(90deg,
+            rgba(5, 6, 7, 0.35) 0%,
+            transparent 25%,
+            transparent 75%,
+            rgba(5, 6, 7, 0.25) 100%),
+        linear-gradient(0deg,
+            rgba(5, 6, 7, 0.65) 0%,
+            transparent 28%);
+}
+
+.performance__accent-line {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    transform-origin: left center;
+
+    background:
+        linear-gradient(90deg,
+            var(--color-red),
+            rgba(227, 33, 39, 0.15) 60%,
+            transparent);
+}
+
+.performance__visual-label {
+    position: absolute;
+
+    bottom: 25px;
+
+    color: rgba(244, 244, 242, 0.45);
+
+    font-size: 8px;
+
+    letter-spacing: 0.4em;
+
+    text-transform: uppercase;
+}
+
+.performance__visual-label--left {
+    left: 25px;
+}
+
+.performance__visual-label--right {
+    right: 25px;
+}
+
+
+/* ========================================
+   STATS
+======================================== */
+
+.performance__stats {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.performance__stat {
+    position: relative;
+
+    padding:
+        clamp(32px, 3.5vw, 55px) clamp(20px, 3vw, 50px);
+
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.performance__stat:first-child {
+    padding-left: 0;
+}
+
+.performance__stat:last-child {
+    border-right: 0;
+}
+
+.performance__value {
+    display: flex;
+    align-items: flex-end;
+
+    gap: 13px;
+
+    line-height: 1;
+}
+
+.performance__number {
+    font-size: clamp(54px, 6vw, 105px);
+    font-weight: 300;
+
+    letter-spacing: -0.045em;
+}
+
+.performance__suffix {
+    margin-bottom: 10px;
+
+    color: var(--color-red);
+
+    font-size: clamp(10px, 1vw, 15px);
+
+    letter-spacing: 0.18em;
+}
+
+.performance__stat p {
+    margin-top: 17px;
+
+    color: rgba(244, 244, 242, 0.38);
+
+    font-size: 8px;
+
+    letter-spacing: 0.35em;
+
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   BOTTOM
+======================================== */
+
+.performance__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 22px;
+
+    padding-top: 40px;
+
+    color: rgba(244, 244, 242, 0.25);
+
+    font-size: 7px;
+
+    letter-spacing: 0.45em;
+
+    text-transform: uppercase;
+}
+
+.performance__bottom-line {
+    width: 45px;
+    height: 1px;
+
+    background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1000px) {
+    .performance__heading {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 22px;
+    }
+
+    .performance__intro {
+        padding-bottom: 0;
+    }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 800px) {
+    .performance {
+        /*
+      Beaucoup plus compact que la première version.
+      On garde juste assez d'air pour conserver le côté premium.
+    */
+        padding:
+            58px 16px 60px;
+    }
+
+
+    /* ---------- TOP ---------- */
+
+    .performance__top {
+        align-items: center;
+
+        margin-bottom: 34px;
+    }
+
+    .performance__index {
+        gap: 10px;
+
+        font-size: 7px;
+
+        letter-spacing: 0.25em;
+    }
+
+    .performance__index>span:first-child {
+        font-size: 10px;
+    }
+
+    .performance__index-line {
+        width: 26px;
+    }
+
+    .performance__microcopy {
+        font-size: 6px;
+
+        letter-spacing: 0.25em;
+        line-height: 1.8;
+    }
+
+
+    /* ---------- HEADING ---------- */
+
+    .performance__heading {
+        display: block;
+
+        margin-bottom: 26px;
+    }
+
+    .performance__title {
+        width: 100%;
+        max-width: none;
+
+        /*
+      Important :
+      on réduit légèrement le titre pour que PERFORMANCE
+      ne touche plus le bord droit.
+    */
+        font-size: clamp(39px, 11.3vw, 54px);
+
+        letter-spacing: 0.025em;
+        line-height: 0.94;
+    }
+
+    .performance__title-line {
+        padding-bottom: 0.05em;
+    }
+
+    .performance__intro {
+        max-width: 100%;
+
+        margin-top: 22px;
+
+        font-size: 7px;
+
+        letter-spacing: 0.12em;
+        line-height: 1.8;
+    }
+
+
+    /* ---------- IMAGE ---------- */
+
+    .performance__visual {
+        width: 100%;
+        height: min(98vw, 430px);
+
+        margin: 0;
+
+        /*
+      Petit détail très léger :
+      l'image n'est pas collée visuellement au texte,
+      mais on supprime le grand vide.
+    */
+    }
+
+    .performance__image {
+        width: 100%;
+        height: 108%;
+
+        object-fit: cover;
+        object-position: 53% center;
+
+        transform: translateY(-4%);
+    }
+
+    .performance__visual-label {
+        bottom: 15px;
+
+        font-size: 5px;
+
+        letter-spacing: 0.32em;
+    }
+
+    .performance__visual-label--left {
+        left: 14px;
+    }
+
+    .performance__visual-label--right {
+        right: 14px;
+    }
+
+
+    /* ---------- STATS ---------- */
+
+    .performance__stats {
+        display: block;
+
+        border-bottom: 0;
+    }
+
+    .performance__stat,
+    .performance__stat:first-child {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+
+        width: 100%;
+
+        padding: 27px 0 25px;
+
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .performance__value {
+        gap: 9px;
+    }
+
+    .performance__number {
+        font-size: clamp(52px, 14vw, 68px);
+
+        line-height: 0.85;
+    }
+
+    .performance__suffix {
+        margin-bottom: 3px;
+
+        font-size: 8px;
+
+        letter-spacing: 0.15em;
+    }
+
+    .performance__stat p {
+        margin: 0 0 3px;
+
+        font-size: 6px;
+
+        letter-spacing: 0.28em;
+
+        text-align: right;
+    }
+
+
+    /* ---------- BOTTOM ---------- */
+
+    .performance__bottom {
+        gap: 10px;
+
+        padding-top: 30px;
+
+        font-size: 5px;
+
+        letter-spacing: 0.25em;
+    }
+
+    .performance__bottom-line {
+        width: 18px;
+    }
+}
+
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 480px) {
+    .performance {
+        padding:
+            50px 15px 55px;
+    }
+
+    .performance__top {
+        margin-bottom: 30px;
+    }
+
+    .performance__microcopy {
+        display: none;
+    }
+
+    .performance__heading {
+        margin-bottom: 22px;
+    }
+
+    .performance__title {
+        /*
+      11vw donne environ 43px sur un téléphone de 390px.
+      PERFORMANCE rentre confortablement.
+    */
+        font-size: 11vw;
+
+        letter-spacing: 0.015em;
+    }
+
+    .performance__intro {
+        margin-top: 18px;
+    }
+
+    .performance__visual {
+        height: 100vw;
+        max-height: 410px;
+    }
+
+    .performance__image {
+        object-position: 52% center;
+    }
+
+    .performance__stat,
+    .performance__stat:first-child {
+        padding:
+            25px 0 23px;
+    }
+
+    .performance__number {
+        font-size: 13.5vw;
+    }
+}
+
+
+/* ========================================
+   VERY SMALL MOBILE
+======================================== */
+
+@media (max-width: 360px) {
+    .performance {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .performance__title {
+        font-size: 10.6vw;
+    }
+
+    .performance__number {
+        font-size: 13vw;
+    }
+
+    .performance__stat p {
+        font-size: 5px;
+
+        letter-spacing: 0.22em;
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .performance__image {
+        transform: none;
+    }
+}
