@@ -37,9 +37,8 @@
     z-index: 0;
 
     /*
-   * Seulement 1% de débordement.
-   * On évite l'ancien -3% qui agrandissait
-   * inutilement le background.
+   * Léger débordement de sécurité pendant
+   * le scale.
    */
     inset: -1%;
 
@@ -47,14 +46,19 @@
     background-repeat: no-repeat;
     background-size: cover;
 
-    transform-origin: center center;
+    /*
+   * Le dézoom reste parfaitement centré.
+   */
+    transform-origin: 50% 50%;
+
+    backface-visibility: hidden;
 
     will-change: transform;
 }
 
 
 /* ========================================
-   SHADE
+   DARK OVERLAY
 ======================================== */
 
 .experience__shade {
@@ -67,37 +71,14 @@
 
     background:
         linear-gradient(90deg,
-            rgba(2, 3, 3, 0.8) 0%,
-            rgba(2, 3, 3, 0.38) 30%,
-            rgba(2, 3, 3, 0.08) 58%,
-            rgba(2, 3, 3, 0.3) 100%),
+            rgba(2, 3, 3, 0.72) 0%,
+            rgba(2, 3, 3, 0.32) 28%,
+            rgba(2, 3, 3, 0.05) 57%,
+            rgba(2, 3, 3, 0.22) 100%),
         linear-gradient(0deg,
-            rgba(2, 3, 3, 0.78) 0%,
-            rgba(2, 3, 3, 0.15) 45%,
-            rgba(2, 3, 3, 0.25) 100%);
-}
-
-
-/* ========================================
-   RED GLOW
-======================================== */
-
-.experience__red-glow {
-    position: absolute;
-    z-index: 2;
-
-    inset: 0;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    background:
-        radial-gradient(circle at 50% 62%,
-            rgba(205, 0, 22, 0.14),
-            transparent 42%);
-
-    mix-blend-mode: screen;
+            rgba(2, 3, 3, 0.72) 0%,
+            rgba(2, 3, 3, 0.1) 48%,
+            rgba(2, 3, 3, 0.18) 100%);
 }
 
 
@@ -141,7 +122,7 @@
 
 
 /* ========================================
-   PHASES
+   PHASES WRAPPER
 ======================================== */
 
 .experience__phases {
@@ -156,19 +137,33 @@
     transform: translateY(-50%);
 }
 
+
+/* ========================================
+   PHASE
+======================================== */
+
 .experience__phase {
     position: absolute;
 
     top: 50%;
     left: 0;
 
+    width: 100%;
+
     transform: translateY(-50%);
+
+    will-change: opacity, transform;
 }
 
 .experience__phase--control,
 .experience__phase--immersion {
     opacity: 0;
 }
+
+
+/* ========================================
+   PHASE CODE
+======================================== */
 
 .experience__phase-code {
     display: block;
@@ -184,18 +179,25 @@
     text-transform: uppercase;
 }
 
+
+/* ========================================
+   PHASE TITLE
+======================================== */
+
 .experience__phase h2 {
     font-size: clamp(68px, 8vw, 145px);
     font-weight: 300;
 
     letter-spacing: 0.055em;
     line-height: 0.9;
+
+    white-space: nowrap;
 }
 
 .experience__phase p {
     margin-top: 28px;
 
-    color: rgba(244, 244, 242, 0.5);
+    color: rgba(244, 244, 242, 0.48);
 
     font-size: 9px;
 
@@ -252,39 +254,49 @@
     display: flex;
     align-items: center;
 
-    gap: 25px;
+    gap: 22px;
 }
+
+
+/* ========================================
+   COUNTER
+======================================== */
 
 .experience__counter {
     display: flex;
     align-items: center;
 
-    gap: 8px;
+    gap: 7px;
 
-    min-width: 62px;
+    min-width: 58px;
 
-    color: rgba(244, 244, 242, 0.4);
+    color: rgba(244, 244, 242, 0.35);
 
-    font-size: 8px;
+    font-size: 7px;
 
-    letter-spacing: 0.25em;
+    letter-spacing: 0.22em;
 }
 
 .experience__counter-current {
     color: var(--color-white);
 
-    font-size: 12px;
+    font-size: 11px;
 }
+
+
+/* ========================================
+   PROGRESS
+======================================== */
 
 .experience__progress {
     position: relative;
 
-    width: 150px;
+    width: 130px;
     height: 1px;
 
     overflow: hidden;
 
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .experience__progress-fill {
@@ -295,7 +307,9 @@
     transform: scaleX(0.33);
     transform-origin: left center;
 
-    background: var(--color-red);
+    background: rgba(220, 15, 30, 0.85);
+
+    will-change: transform;
 }
 
 
@@ -310,11 +324,11 @@
     right: var(--page-padding);
     bottom: clamp(35px, 4vw, 60px);
 
-    color: rgba(244, 244, 242, 0.3);
+    color: rgba(244, 244, 242, 0.24);
 
-    font-size: 6px;
+    font-size: 5px;
 
-    letter-spacing: 0.4em;
+    letter-spacing: 0.38em;
 
     text-transform: uppercase;
 }
@@ -330,7 +344,7 @@
 
 
 /* ========================================
-   MOBILE
+   TABLET / MOBILE
 ======================================== */
 
 @media (max-width: 800px) {
@@ -344,15 +358,13 @@
         padding:
             55px 15px 65px;
 
-        background:
-            radial-gradient(circle at 50% 42%,
-                rgba(190, 0, 20, 0.045),
-                transparent 30%),
-            #020303;
+        background: #020303;
     }
 
 
-    /* TOP */
+    /* ======================================
+     MOBILE TOP
+  ====================================== */
 
     .experience__mobile-top {
         display: flex;
@@ -395,7 +407,9 @@
     }
 
 
-    /* HEADING */
+    /* ======================================
+     MOBILE HEADING
+  ====================================== */
 
     .experience__mobile-heading {
         margin-bottom: 28px;
@@ -429,7 +443,9 @@
     }
 
 
-    /* VISUAL */
+    /* ======================================
+     MOBILE IMAGE
+  ====================================== */
 
     .experience__visual {
         position: relative;
@@ -450,6 +466,11 @@
         height: 100%;
 
         object-fit: cover;
+
+        /*
+     * On garde le volant suffisamment visible
+     * sur le cadrage téléphone.
+     */
         object-position: 43% center;
     }
 
@@ -462,8 +483,8 @@
 
         background:
             linear-gradient(0deg,
-                rgba(2, 3, 3, 0.68),
-                transparent 38%);
+                rgba(2, 3, 3, 0.65),
+                transparent 40%);
     }
 
     .experience__visual>span {
@@ -482,7 +503,9 @@
     }
 
 
-    /* MOBILE LIST */
+    /* ======================================
+     MOBILE FEATURES
+  ====================================== */
 
     .experience__mobile-list {
         margin-top: 10px;
@@ -497,7 +520,8 @@
 
         padding: 24px 0;
 
-        border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+        border-bottom:
+            1px solid rgba(255, 255, 255, 0.09);
     }
 
     .experience__mobile-item>span {
@@ -587,7 +611,9 @@
 @media (prefers-reduced-motion: reduce) {
 
     .experience__background,
-    .experience__visual {
+    .experience__phase,
+    .experience__visual,
+    .experience__mobile-item {
         transform: none !important;
     }
 }

@@ -24,218 +24,308 @@ export default function Experience() {
             ======================================== */
 
             mm.add('(min-width: 801px)', () => {
+                /* ----------------------------------------
+                   ÉTATS INITIAUX
+                ---------------------------------------- */
+
+                gsap.set('.experience__background', {
+                    scale: 1.12,
+                    x: 0,
+                    y: 0,
+                });
+
+                gsap.set('.experience__phase--precision', {
+                    opacity: 1,
+                    y: 0,
+                });
+
+                gsap.set(
+                    [
+                        '.experience__phase--control',
+                        '.experience__phase--immersion',
+                    ],
+                    {
+                        opacity: 0,
+                        y: 30,
+                    },
+                );
+
+                gsap.set('.experience__progress-fill', {
+                    scaleX: 0.33,
+                });
+
+                /* ----------------------------------------
+                   TIMELINE PRINCIPALE
+                ---------------------------------------- */
+
                 const timeline = gsap.timeline({
                     scrollTrigger: {
                         trigger: section,
                         start: 'top top',
-                        end: '+=240%',
-                        scrub: 1,
+
+                        /*
+                         * Scroll volontairement long :
+                         * le dézoom doit respirer.
+                         */
+                        end: '+=320%',
+
+                        /*
+                         * Légère inertie pour éviter
+                         * une animation trop mécanique.
+                         */
+                        scrub: 1.8,
+
                         pin: true,
                         anticipatePin: 1,
+                        invalidateOnRefresh: true,
                     },
                 });
 
-                /* ======================================
-                   PHASE 01 — PRECISION
-                ====================================== */
+                /* ========================================
+                   CAMERA — DÉZOOM CONTINU
+                ======================================== */
 
-                timeline
-                    .fromTo(
-                        '.experience__background',
-                        {
-                            scale: 1.045,
-                            xPercent: 0,
-                        },
-                        {
-                            scale: 1,
-                            xPercent: 0,
-                            duration: 1,
-                            ease: 'none',
-                        },
-                    )
+                timeline.to(
+                    '.experience__background',
+                    {
+                        scale: 1,
+                        x: 0,
+                        y: 0,
 
-                    .from(
-                        '.experience__index',
-                        {
-                            opacity: 0,
-                            x: -30,
-                            duration: 0.35,
-                            ease: 'power3.out',
-                        },
-                        0,
-                    )
+                        duration: 10,
+                        ease: 'none',
+                    },
+                    0,
+                );
 
-                    .from(
-                        '.experience__phase--precision',
-                        {
-                            opacity: 0,
-                            y: 30,
-                            duration: 0.45,
-                            ease: 'power3.out',
-                        },
-                        0.15,
-                    )
+                /* ========================================
+                   INTRO
+                ======================================== */
 
-                    .from(
-                        '.experience__counter',
-                        {
-                            opacity: 0,
-                            duration: 0.35,
-                        },
-                        0.2,
-                    );
+                timeline.from(
+                    '.experience__index',
+                    {
+                        opacity: 0,
+                        x: -18,
 
-                /* ======================================
-                   PHASE 02 — CONTROL
-                ====================================== */
+                        duration: 0.8,
+                        ease: 'power2.out',
+                    },
+                    0,
+                );
 
-                timeline
-                    .to(
-                        '.experience__phase--precision',
-                        {
-                            opacity: 0,
-                            y: -25,
-                            duration: 0.35,
-                        },
-                        1.1,
-                    )
+                timeline.from(
+                    '.experience__navigation',
+                    {
+                        opacity: 0,
 
-                    .to(
-                        '.experience__background',
-                        {
-                            scale: 1.035,
-                            xPercent: -0.8,
-                            duration: 0.9,
-                            ease: 'none',
-                        },
-                        1.1,
-                    )
+                        duration: 0.7,
+                        ease: 'power2.out',
+                    },
+                    0.15,
+                );
 
-                    .fromTo(
-                        '.experience__phase--control',
-                        {
-                            opacity: 0,
-                            y: 30,
-                        },
-                        {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.45,
-                            ease: 'power3.out',
-                        },
-                        1.3,
-                    )
+                timeline.from(
+                    '.experience__side-label',
+                    {
+                        opacity: 0,
 
-                    .to(
-                        '.experience__progress-fill',
-                        {
-                            scaleX: 0.66,
-                            duration: 0.8,
-                        },
-                        1.25,
-                    )
+                        duration: 0.7,
+                        ease: 'power2.out',
+                    },
+                    0.15,
+                );
 
-                    .to(
-                        '.experience__counter-current',
-                        {
-                            innerText: 2,
-                            duration: 0.01,
-                            snap: {
-                                innerText: 1,
-                            },
-                        },
-                        1.3,
-                    );
+                /* ========================================
+                   PRECISION
+                ======================================== */
 
-                /* ======================================
-                   PHASE 03 — IMMERSION
-                ====================================== */
+                timeline.fromTo(
+                    '.experience__phase--precision',
+                    {
+                        opacity: 0,
+                        y: 25,
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
 
-                timeline
-                    .to(
-                        '.experience__phase--control',
-                        {
-                            opacity: 0,
-                            y: -25,
-                            duration: 0.35,
-                        },
-                        2.2,
-                    )
+                        duration: 0.9,
+                        ease: 'power3.out',
+                    },
+                    0.25,
+                );
 
-                    /*
-                     * On limite volontairement le zoom final.
-                     * 1.06 au lieu de 1.11 :
-                     * moins de perte de netteté sur grands écrans.
-                     */
-                    .to(
-                        '.experience__background',
-                        {
-                            scale: 1.06,
-                            xPercent: 0,
-                            duration: 1,
-                            ease: 'none',
-                        },
-                        2.15,
-                    )
+                /*
+                 * Petit temps de lecture avant
+                 * la transition suivante.
+                 */
 
-                    .to(
-                        '.experience__red-glow',
-                        {
-                            opacity: 0.62,
-                            duration: 0.8,
-                        },
-                        2.2,
-                    )
+                timeline.to(
+                    '.experience__phase--precision',
+                    {
+                        opacity: 1,
 
-                    .fromTo(
-                        '.experience__phase--immersion',
-                        {
-                            opacity: 0,
-                            y: 35,
-                        },
-                        {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.5,
-                            ease: 'power3.out',
-                        },
-                        2.4,
-                    )
+                        duration: 1,
+                    },
+                    1.15,
+                );
 
-                    .fromTo(
-                        '.experience__statement-line > span',
-                        {
-                            yPercent: 115,
-                        },
-                        {
-                            yPercent: 0,
-                            duration: 0.65,
-                            stagger: 0.08,
-                            ease: 'power3.out',
-                        },
-                        2.45,
-                    )
+                /* ========================================
+                   PRECISION → CONTROL
+                ======================================== */
 
-                    .to(
-                        '.experience__progress-fill',
-                        {
-                            scaleX: 1,
-                            duration: 0.8,
-                        },
-                        2.3,
-                    )
+                timeline.to(
+                    '.experience__phase--precision',
+                    {
+                        opacity: 0,
+                        y: -18,
 
-                    .to(
-                        '.experience__counter-current',
-                        {
-                            innerText: 3,
-                            duration: 0.01,
-                            snap: {
-                                innerText: 1,
-                            },
+                        duration: 1.1,
+                        ease: 'power2.inOut',
+                    },
+                    2.15,
+                );
+
+                /*
+                 * CONTROL commence avant que PRECISION
+                 * ait totalement disparu :
+                 * vrai crossfade.
+                 */
+
+                timeline.to(
+                    '.experience__phase--control',
+                    {
+                        opacity: 1,
+                        y: 0,
+
+                        duration: 1.2,
+                        ease: 'power2.out',
+                    },
+                    2.65,
+                );
+
+                timeline.to(
+                    '.experience__progress-fill',
+                    {
+                        scaleX: 0.66,
+
+                        duration: 1.15,
+                        ease: 'power2.inOut',
+                    },
+                    2.45,
+                );
+
+                timeline.to(
+                    '.experience__counter-current',
+                    {
+                        innerText: 2,
+
+                        duration: 0.01,
+
+                        snap: {
+                            innerText: 1,
                         },
-                        2.4,
-                    );
+                    },
+                    2.85,
+                );
+
+                /*
+                 * Temps de lecture CONTROL.
+                 */
+
+                timeline.to(
+                    '.experience__phase--control',
+                    {
+                        opacity: 1,
+
+                        duration: 1.5,
+                    },
+                    3.85,
+                );
+
+                /* ========================================
+                   CONTROL → IMMERSION
+                ======================================== */
+
+                timeline.to(
+                    '.experience__phase--control',
+                    {
+                        opacity: 0,
+                        y: -18,
+
+                        duration: 1.1,
+                        ease: 'power2.inOut',
+                    },
+                    5.35,
+                );
+
+                timeline.to(
+                    '.experience__phase--immersion',
+                    {
+                        opacity: 1,
+                        y: 0,
+
+                        duration: 1.25,
+                        ease: 'power2.out',
+                    },
+                    5.9,
+                );
+
+                timeline.fromTo(
+                    '.experience__statement-line > span',
+                    {
+                        yPercent: 105,
+                    },
+                    {
+                        yPercent: 0,
+
+                        duration: 1.1,
+                        stagger: 0.08,
+
+                        ease: 'power3.out',
+                    },
+                    5.95,
+                );
+
+                timeline.to(
+                    '.experience__progress-fill',
+                    {
+                        scaleX: 1,
+
+                        duration: 1.15,
+                        ease: 'power2.inOut',
+                    },
+                    5.75,
+                );
+
+                timeline.to(
+                    '.experience__counter-current',
+                    {
+                        innerText: 3,
+
+                        duration: 0.01,
+
+                        snap: {
+                            innerText: 1,
+                        },
+                    },
+                    6.05,
+                );
+
+                /* ========================================
+                   RESPIRATION FINALE
+                ======================================== */
+
+                timeline.to(
+                    '.experience__phase--immersion',
+                    {
+                        opacity: 1,
+
+                        duration: 2,
+                    },
+                    7.2,
+                );
             });
 
             /* ========================================
@@ -246,10 +336,12 @@ export default function Experience() {
                 gsap.from('.experience__mobile-index', {
                     scrollTrigger: {
                         trigger: '.experience__mobile',
-                        start: 'top 85%',
+                        start: 'top 88%',
                     },
+
                     opacity: 0,
-                    x: -20,
+                    x: -18,
+
                     duration: 0.7,
                     ease: 'power3.out',
                 });
@@ -257,10 +349,12 @@ export default function Experience() {
                 gsap.from('.experience__mobile-heading', {
                     scrollTrigger: {
                         trigger: '.experience__mobile-heading',
-                        start: 'top 85%',
+                        start: 'top 88%',
                     },
+
                     opacity: 0,
-                    y: 30,
+                    y: 25,
+
                     duration: 0.9,
                     ease: 'power3.out',
                 });
@@ -270,8 +364,10 @@ export default function Experience() {
                         trigger: '.experience__visual',
                         start: 'top 88%',
                     },
+
                     opacity: 0,
-                    y: 30,
+                    y: 25,
+
                     duration: 1,
                     ease: 'power3.out',
                 });
@@ -279,12 +375,15 @@ export default function Experience() {
                 gsap.from('.experience__mobile-item', {
                     scrollTrigger: {
                         trigger: '.experience__mobile-list',
-                        start: 'top 88%',
+                        start: 'top 90%',
                     },
+
                     opacity: 0,
-                    y: 22,
-                    duration: 0.75,
-                    stagger: 0.13,
+                    y: 18,
+
+                    duration: 0.7,
+                    stagger: 0.12,
+
                     ease: 'power3.out',
                 });
             });
@@ -306,6 +405,8 @@ export default function Experience() {
       ====================================== */}
 
             <div className="experience__desktop">
+                {/* BACKGROUND */}
+
                 <div
                     className="experience__background"
                     style={{
@@ -315,11 +416,6 @@ export default function Experience() {
 
                 <div
                     className="experience__shade"
-                    aria-hidden="true"
-                />
-
-                <div
-                    className="experience__red-glow"
                     aria-hidden="true"
                 />
 
@@ -336,7 +432,7 @@ export default function Experience() {
                 {/* PHASES */}
 
                 <div className="experience__phases">
-                    {/* PRECISION */}
+                    {/* 01 */}
 
                     <div className="experience__phase experience__phase--precision">
                         <span className="experience__phase-code">
@@ -344,7 +440,8 @@ export default function Experience() {
                         </span>
 
                         <h2>
-                            PRECISION<span className="experience__dot">.</span>
+                            PRECISION
+                            <span className="experience__dot">.</span>
                         </h2>
 
                         <p>
@@ -354,7 +451,7 @@ export default function Experience() {
                         </p>
                     </div>
 
-                    {/* CONTROL */}
+                    {/* 02 */}
 
                     <div className="experience__phase experience__phase--control">
                         <span className="experience__phase-code">
@@ -362,7 +459,8 @@ export default function Experience() {
                         </span>
 
                         <h2>
-                            CONTROL<span className="experience__dot">.</span>
+                            CONTROL
+                            <span className="experience__dot">.</span>
                         </h2>
 
                         <p>
@@ -372,7 +470,7 @@ export default function Experience() {
                         </p>
                     </div>
 
-                    {/* IMMERSION */}
+                    {/* 03 */}
 
                     <div className="experience__phase experience__phase--immersion">
                         <span className="experience__phase-code">
@@ -390,7 +488,8 @@ export default function Experience() {
 
                             <span className="experience__statement-line">
                                 <span>
-                                    YOU<span className="experience__dot">.</span>
+                                    YOU
+                                    <span className="experience__dot">.</span>
                                 </span>
                             </span>
                         </div>
@@ -414,6 +513,8 @@ export default function Experience() {
                         <span className="experience__progress-fill" />
                     </div>
                 </div>
+
+                {/* BOTTOM RIGHT */}
 
                 <span className="experience__side-label">
                     HUMAN / MACHINE / INTERFACE
@@ -439,7 +540,7 @@ export default function Experience() {
                     <span>XN / INT / 026</span>
                 </div>
 
-                {/* HEADING */}
+                {/* TITLE */}
 
                 <div className="experience__mobile-heading">
                     <h2>
@@ -469,10 +570,12 @@ export default function Experience() {
                         aria-hidden="true"
                     />
 
-                    <span>DRIVER ENVIRONMENT / 01</span>
+                    <span>
+                        DRIVER ENVIRONMENT / 01
+                    </span>
                 </div>
 
-                {/* MOBILE PHASES */}
+                {/* FEATURES */}
 
                 <div className="experience__mobile-list">
                     <article className="experience__mobile-item">
