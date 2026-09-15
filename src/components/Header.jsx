@@ -6,77 +6,6 @@ import './Header.css';
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
 
-    /* ========================================
-       LOCK SCROLL WHEN MENU IS OPEN
-    ======================================== */
-
-    useEffect(() => {
-        if (!menuOpen) {
-            return undefined;
-        }
-
-        const previousBodyOverflow = document.body.style.overflow;
-        const previousHtmlOverflow = document.documentElement.style.overflow;
-
-        document.body.style.overflow = 'hidden';
-        document.documentElement.style.overflow = 'hidden';
-
-        return () => {
-            document.body.style.overflow = previousBodyOverflow;
-            document.documentElement.style.overflow = previousHtmlOverflow;
-        };
-    }, [menuOpen]);
-
-    /* ========================================
-       CLOSE WITH ESCAPE
-    ======================================== */
-
-    useEffect(() => {
-        const handleKeyDown = (event) => {
-            if (event.key === 'Escape') {
-                setMenuOpen(false);
-            }
-        };
-
-        window.addEventListener('keydown', handleKeyDown);
-
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown);
-        };
-    }, []);
-
-    /* ========================================
-       CLOSE MENU WHEN RETURNING TO DESKTOP
-    ======================================== */
-
-    useEffect(() => {
-        const mediaQuery = window.matchMedia('(min-width: 801px)');
-
-        const handleChange = (event) => {
-            if (event.matches) {
-                setMenuOpen(false);
-            }
-        };
-
-        mediaQuery.addEventListener('change', handleChange);
-
-        return () => {
-            mediaQuery.removeEventListener('change', handleChange);
-        };
-    }, []);
-
-    /* ========================================
-       CLOSE MENU
-    ======================================== */
-
-    const closeMenu = () => {
-        setMenuOpen(false);
-    };
-
-    /* ========================================
-       NAVIGATION
-    ======================================== */
-
     const navigation = [
         {
             number: '01',
@@ -101,6 +30,89 @@ export default function Header() {
     ];
 
     /* ========================================
+       LOCK SCROLL WHEN MENU IS OPEN
+    ======================================== */
+
+    useEffect(() => {
+        if (!menuOpen) {
+            return undefined;
+        }
+
+        const previousBodyOverflow =
+            document.body.style.overflow;
+
+        const previousHtmlOverflow =
+            document.documentElement.style.overflow;
+
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+
+        return () => {
+            document.body.style.overflow =
+                previousBodyOverflow;
+
+            document.documentElement.style.overflow =
+                previousHtmlOverflow;
+        };
+    }, [menuOpen]);
+
+    /* ========================================
+       CLOSE WITH ESCAPE
+    ======================================== */
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                setMenuOpen(false);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener(
+                'keydown',
+                handleKeyDown,
+            );
+        };
+    }, []);
+
+    /* ========================================
+       CLOSE MENU WHEN RETURNING TO DESKTOP
+    ======================================== */
+
+    useEffect(() => {
+        const mediaQuery =
+            window.matchMedia('(min-width: 801px)');
+
+        const handleChange = (event) => {
+            if (event.matches) {
+                setMenuOpen(false);
+            }
+        };
+
+        mediaQuery.addEventListener(
+            'change',
+            handleChange,
+        );
+
+        return () => {
+            mediaQuery.removeEventListener(
+                'change',
+                handleChange,
+            );
+        };
+    }, []);
+
+    /* ========================================
+       CLOSE MENU
+    ======================================== */
+
+    const closeMenu = () => {
+        setMenuOpen(false);
+    };
+
+    /* ========================================
        PORTAL
     ======================================== */
 
@@ -111,6 +123,7 @@ export default function Header() {
       ====================================== */}
 
             <header className="header">
+
                 {/* BRAND */}
 
                 <a
@@ -128,7 +141,9 @@ export default function Header() {
                     </span>
                 </a>
 
-                {/* DESKTOP NAV */}
+                {/* ====================================
+            DESKTOP NAVIGATION
+        ==================================== */}
 
                 <nav
                     className="header__nav"
@@ -144,7 +159,9 @@ export default function Header() {
                     ))}
                 </nav>
 
-                {/* DESKTOP EXPLORE */}
+                {/* ====================================
+            EXPLORE
+        ==================================== */}
 
                 <a
                     className="header__explore"
@@ -154,12 +171,15 @@ export default function Header() {
                         Explore
                     </span>
 
-                    <span>
-                        ↗
-                    </span>
+                    <span
+                        className="header__explore-arrow"
+                        aria-hidden="true"
+                    />
                 </a>
 
-                {/* MOBILE BURGER */}
+                {/* ====================================
+            MOBILE BURGER
+        ==================================== */}
 
                 <button
                     className="header__menu"
@@ -180,10 +200,13 @@ export default function Header() {
 
             <div
                 id="mobile-navigation"
-                className={`mobile-menu ${menuOpen ? 'mobile-menu--open' : ''
+                className={`mobile-menu ${menuOpen
+                        ? 'mobile-menu--open'
+                        : ''
                     }`}
                 aria-hidden={!menuOpen}
             >
+
                 {/* DECORATIVE X */}
 
                 <div
@@ -193,9 +216,12 @@ export default function Header() {
                     <span>X</span>
                 </div>
 
-                {/* MENU HEADER */}
+                {/* ====================================
+            MOBILE HEADER
+        ==================================== */}
 
                 <div className="mobile-menu__header">
+
                     <a
                         className="mobile-menu__brand"
                         href="#hero"
@@ -218,15 +244,23 @@ export default function Header() {
                     </button>
                 </div>
 
-                {/* META */}
+                {/* ====================================
+            META
+        ==================================== */}
 
                 <div className="mobile-menu__meta">
-                    <span>XN / NAVIGATION</span>
+                    <span>
+                        XN / NAVIGATION
+                    </span>
 
-                    <span>MMXXVI</span>
+                    <span>
+                        MMXXVI
+                    </span>
                 </div>
 
-                {/* MOBILE NAV */}
+                {/* ====================================
+            MOBILE NAVIGATION
+        ==================================== */}
 
                 <nav
                     className="mobile-menu__nav"
@@ -246,23 +280,32 @@ export default function Header() {
                                 {item.label}
                             </span>
 
-                            <span className="mobile-menu__arrow">
-                                ↗
-                            </span>
+                            <span
+                                className="mobile-menu__arrow"
+                                aria-hidden="true"
+                            />
                         </a>
                     ))}
                 </nav>
 
-                {/* BOTTOM */}
+                {/* ====================================
+            BOTTOM
+        ==================================== */}
 
                 <div className="mobile-menu__bottom">
                     <div>
-                        <span>XENOM</span>
+                        <span>
+                            XENOM
+                        </span>
 
-                        <span>BEYOND MOTION.</span>
+                        <span>
+                            BEYOND MOTION.
+                        </span>
                     </div>
 
-                    <span>CONCEPT 001</span>
+                    <span>
+                        CONCEPT 001
+                    </span>
                 </div>
             </div>
         </>,

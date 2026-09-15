@@ -97,9 +97,6 @@
     transition: color 0.3s ease;
 }
 
-
-/* RED UNDERLINE */
-
 .header__nav a::after {
     position: absolute;
 
@@ -165,12 +162,6 @@
         border-color 0.35s ease;
 }
 
-.header__explore>span:last-child {
-    font-size: 10px;
-
-    transition: transform 0.35s ease;
-}
-
 .header__explore:hover {
     border-color: rgba(255, 255, 255, 0.85);
 
@@ -178,7 +169,63 @@
     color: #020303;
 }
 
-.header__explore:hover>span:last-child {
+
+/* ========================================
+   CUSTOM EXPLORE ARROW
+   No emoji = consistent on iOS
+======================================== */
+
+.header__explore-arrow {
+    position: relative;
+
+    display: block;
+    flex: 0 0 auto;
+
+    width: 10px;
+    height: 10px;
+
+    opacity: 0.75;
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+.header__explore-arrow::before {
+    position: absolute;
+
+    top: 4px;
+    left: 0;
+
+    width: 10px;
+    height: 1px;
+
+    content: '';
+
+    background: currentColor;
+
+    transform: rotate(-45deg);
+    transform-origin: center;
+}
+
+.header__explore-arrow::after {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 5px;
+    height: 5px;
+
+    content: '';
+
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+}
+
+.header__explore:hover .header__explore-arrow {
+    opacity: 1;
+
     transform: translate(2px, -2px);
 }
 
@@ -202,6 +249,9 @@
     background: transparent;
 
     cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .header__menu span {
@@ -279,7 +329,7 @@
 
 
 /* ========================================
-   MOBILE MENU — OPEN
+   MOBILE MENU OPEN
 ======================================== */
 
 .mobile-menu--open {
@@ -351,6 +401,9 @@
     background: transparent;
 
     cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .mobile-menu__close span {
@@ -459,7 +512,7 @@
     display: grid;
 
     grid-template-columns:
-        34px minmax(0, 1fr) auto;
+        34px minmax(0, 1fr) 22px;
 
     align-items: center;
 
@@ -486,7 +539,7 @@
 
 
 /* ========================================
-   MOBILE NAV — OPEN ANIMATION
+   MOBILE NAV OPEN ANIMATION
 ======================================== */
 
 .mobile-menu--open .mobile-menu__nav a {
@@ -549,23 +602,71 @@
 
 
 /* ========================================
-   MOBILE ARROW
+   CUSTOM MOBILE ARROW
+   Replaces the ↗ emoji
 ======================================== */
 
 .mobile-menu__arrow {
-    color: rgba(244, 244, 242, 0.35);
+    position: relative;
 
-    font-size: 15px;
+    display: block;
+
+    justify-self: end;
+
+    width: 16px;
+    height: 16px;
+
+    color: var(--color-white);
+
+    opacity: 0.38;
 
     transition:
-        color 0.3s ease,
+        opacity 0.3s ease,
         transform 0.3s ease;
 }
 
-.mobile-menu__nav a:hover .mobile-menu__arrow {
-    color: var(--color-red);
 
-    transform: translate(3px, -3px);
+/* DIAGONAL */
+
+.mobile-menu__arrow::before {
+    position: absolute;
+
+    top: 7px;
+    left: 1px;
+
+    width: 14px;
+    height: 1px;
+
+    content: '';
+
+    background: currentColor;
+
+    transform: rotate(-45deg);
+    transform-origin: center;
+}
+
+
+/* ARROW HEAD */
+
+.mobile-menu__arrow::after {
+    position: absolute;
+
+    top: 1px;
+    right: 0;
+
+    width: 7px;
+    height: 7px;
+
+    content: '';
+
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+}
+
+.mobile-menu__nav a:hover .mobile-menu__arrow {
+    opacity: 1;
+
+    transform: translate(2px, -2px);
 }
 
 
@@ -705,6 +806,9 @@
     }
 
     .mobile-menu__nav a {
+        grid-template-columns:
+            28px minmax(0, 1fr) 18px;
+
         padding:
             clamp(15px, 2.7vh, 22px) 0;
     }
@@ -712,6 +816,22 @@
     .mobile-menu__label {
         font-size:
             clamp(27px, 8vw, 38px);
+    }
+
+    .mobile-menu__arrow {
+        width: 14px;
+        height: 14px;
+    }
+
+    .mobile-menu__arrow::before {
+        top: 6px;
+
+        width: 12px;
+    }
+
+    .mobile-menu__arrow::after {
+        width: 6px;
+        height: 6px;
     }
 
     .mobile-menu__bottom {
@@ -750,6 +870,7 @@
 
     .header__nav a::after,
     .header__explore,
+    .header__explore-arrow,
     .header__menu span,
     .mobile-menu,
     .mobile-menu__nav a,
