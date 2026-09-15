@@ -1,0 +1,736 @@
+/* ========================================
+   XENOM — FINALE
+======================================== */
+
+.finale {
+    position: relative;
+
+    width: 100%;
+    overflow: hidden;
+
+    background: #020303;
+    color: var(--color-white);
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.finale__hero {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 100svh;
+
+    padding:
+        clamp(110px, 10vw, 170px) var(--page-padding) clamp(70px, 6vw, 100px);
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   GIANT X
+======================================== */
+
+.finale__x {
+    position: absolute;
+    z-index: 0;
+
+    top: 50%;
+    left: 67%;
+
+    width: min(48vw, 850px);
+    aspect-ratio: 1;
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+}
+
+.finale__x-line {
+    position: absolute;
+
+    top: 50%;
+    left: 0;
+
+    width: 100%;
+    height: clamp(70px, 7vw, 130px);
+
+    transform-origin: center center;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.026) 15%,
+            rgba(255, 255, 255, 0.055) 50%,
+            rgba(255, 255, 255, 0.026) 85%,
+            transparent);
+
+    will-change: transform;
+}
+
+.finale__x-line--one {
+    transform: rotate(45deg);
+}
+
+.finale__x-line--two {
+    transform: rotate(-45deg);
+}
+
+
+/* ========================================
+   TOP
+======================================== */
+
+.finale__top {
+    position: absolute;
+    z-index: 5;
+
+    top: clamp(40px, 4vw, 65px);
+    right: var(--page-padding);
+    left: var(--page-padding);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.finale__index {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    color: rgba(244, 244, 242, 0.4);
+
+    font-size: 8px;
+
+    letter-spacing: 0.35em;
+
+    text-transform: uppercase;
+}
+
+.finale__index>span:first-child {
+    color: var(--color-white);
+
+    font-size: 11px;
+}
+
+.finale__index-line {
+    width: 42px;
+    height: 1px;
+
+    background: var(--color-red);
+}
+
+.finale__code {
+    color: rgba(244, 244, 242, 0.22);
+
+    font-size: 6px;
+
+    letter-spacing: 0.4em;
+
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   HERO CONTENT
+======================================== */
+
+.finale__hero-content {
+    position: relative;
+    z-index: 5;
+
+    width: 100%;
+}
+
+.finale__eyebrow {
+    display: block;
+
+    margin-bottom: 25px;
+
+    color: var(--color-red);
+
+    font-size: 7px;
+
+    letter-spacing: 0.45em;
+
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   TITLE
+======================================== */
+
+.finale__title {
+    display: flex;
+    flex-direction: column;
+
+    width: max-content;
+
+    font-size: clamp(75px, 10vw, 180px);
+    font-weight: 300;
+
+    letter-spacing: 0.035em;
+    line-height: 0.82;
+}
+
+.finale__title-line {
+    display: block;
+
+    overflow: hidden;
+
+    padding-bottom: 0.06em;
+}
+
+.finale__title-line>span {
+    display: block;
+}
+
+.finale__title-line--brand {
+    margin-top: 0.12em;
+
+    color: rgba(244, 244, 242, 0.16);
+}
+
+.finale__dot {
+    color: var(--color-red);
+}
+
+
+/* ========================================
+   ACTION
+======================================== */
+
+.finale__action {
+    display: flex;
+    align-items: flex-end;
+
+    gap: clamp(60px, 9vw, 150px);
+
+    margin-top: clamp(45px, 5vw, 75px);
+}
+
+.finale__description {
+    color: rgba(244, 244, 242, 0.38);
+
+    font-size: 7px;
+
+    letter-spacing: 0.2em;
+    line-height: 1.9;
+
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   CTA
+======================================== */
+
+.finale__cta {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: min(280px, 25vw);
+
+    padding: 18px 20px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.3);
+
+    background: transparent;
+    color: var(--color-white);
+
+    font: inherit;
+
+    cursor: pointer;
+
+    transition:
+        color 0.4s ease,
+        border-color 0.4s ease,
+        background 0.4s ease;
+}
+
+.finale__cta span:first-child {
+    font-size: 7px;
+
+    letter-spacing: 0.25em;
+
+    text-transform: uppercase;
+}
+
+.finale__cta span:last-child {
+    transition: transform 0.4s ease;
+}
+
+.finale__cta:hover {
+    border-color: var(--color-white);
+
+    background: var(--color-white);
+    color: #020303;
+}
+
+.finale__cta:hover span:last-child {
+    transform: translateY(-4px);
+}
+
+
+/* ========================================
+   HERO BOTTOM
+======================================== */
+
+.finale__hero-bottom {
+    position: absolute;
+    z-index: 5;
+
+    right: var(--page-padding);
+    bottom: clamp(35px, 4vw, 60px);
+    left: var(--page-padding);
+
+    display: flex;
+    justify-content: space-between;
+
+    color: rgba(244, 244, 242, 0.2);
+
+    font-size: 5px;
+
+    letter-spacing: 0.4em;
+
+    text-transform: uppercase;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.finale__footer {
+    position: relative;
+    z-index: 5;
+
+    padding:
+        clamp(70px, 7vw, 110px) var(--page-padding) 30px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.09);
+
+    background: #050606;
+}
+
+
+/* ========================================
+   FOOTER MAIN
+======================================== */
+
+.finale__footer-main {
+    display: grid;
+
+    grid-template-columns: 1.3fr 1fr 0.7fr;
+
+    gap: 60px;
+
+    padding-bottom:
+        clamp(70px, 8vw, 130px);
+}
+
+
+/* ========================================
+   BRAND
+======================================== */
+
+.finale__brand-name {
+    display: flex;
+    align-items: center;
+
+    gap: 17px;
+}
+
+.finale__brand-name>span:first-child {
+    font-size: 25px;
+    font-weight: 300;
+}
+
+.finale__brand-name>span:last-child {
+    font-size: 13px;
+
+    letter-spacing: 0.45em;
+}
+
+.finale__brand p {
+    margin-top: 28px;
+
+    color: rgba(244, 244, 242, 0.28);
+
+    font-size: 6px;
+
+    letter-spacing: 0.2em;
+    line-height: 1.8;
+}
+
+
+/* ========================================
+   NAV
+======================================== */
+
+.finale__nav {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 16px;
+}
+
+.finale__nav a {
+    position: relative;
+
+    color: rgba(244, 244, 242, 0.45);
+
+    font-size: 8px;
+
+    letter-spacing: 0.25em;
+
+    text-decoration: none;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.finale__nav a::before {
+    position: absolute;
+
+    top: 50%;
+    left: -18px;
+
+    width: 8px;
+    height: 1px;
+
+    opacity: 0;
+
+    content: '';
+
+    background: var(--color-red);
+
+    transform:
+        translateY(-50%) scaleX(0);
+
+    transform-origin: right;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.finale__nav a:hover {
+    color: var(--color-white);
+
+    transform: translateX(12px);
+}
+
+.finale__nav a:hover::before {
+    opacity: 1;
+
+    transform:
+        translateY(-50%) scaleX(1);
+}
+
+
+/* ========================================
+   FOOTER CODE
+======================================== */
+
+.finale__footer-code {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 7px;
+
+    color: rgba(244, 244, 242, 0.2);
+
+    font-size: 6px;
+
+    letter-spacing: 0.4em;
+}
+
+
+/* ========================================
+   FOOTER BOTTOM
+======================================== */
+
+.finale__footer-bottom {
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+
+    padding-top: 25px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    color: rgba(244, 244, 242, 0.22);
+
+    font-size: 5px;
+
+    letter-spacing: 0.3em;
+
+    text-transform: uppercase;
+}
+
+.finale__footer-bottom>span:last-child {
+    justify-self: end;
+}
+
+.finale__footer-bottom button {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    border: 0;
+
+    background: transparent;
+    color: rgba(244, 244, 242, 0.45);
+
+    font: inherit;
+
+    font-size: 6px;
+
+    letter-spacing: 0.3em;
+
+    cursor: pointer;
+
+    transition: color 0.3s ease;
+}
+
+.finale__footer-bottom button span {
+    transition: transform 0.3s ease;
+}
+
+.finale__footer-bottom button:hover {
+    color: var(--color-white);
+}
+
+.finale__footer-bottom button:hover span {
+    transform: translateY(-4px);
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 800px) {
+    .finale__hero {
+        min-height: 90svh;
+
+        padding:
+            110px 15px 55px;
+    }
+
+
+    /* X */
+
+    .finale__x {
+        top: 49%;
+        left: 65%;
+
+        width: 115vw;
+
+        opacity: 0.7;
+    }
+
+    .finale__x-line {
+        height: 65px;
+    }
+
+
+    /* TOP */
+
+    .finale__top {
+        top: 45px;
+        right: 15px;
+        left: 15px;
+    }
+
+    .finale__index {
+        gap: 10px;
+
+        font-size: 7px;
+
+        letter-spacing: 0.25em;
+    }
+
+    .finale__index>span:first-child {
+        font-size: 10px;
+    }
+
+    .finale__index-line {
+        width: 26px;
+    }
+
+    .finale__code {
+        font-size: 5px;
+
+        letter-spacing: 0.2em;
+    }
+
+
+    /* CONTENT */
+
+    .finale__eyebrow {
+        margin-bottom: 18px;
+
+        font-size: 6px;
+
+        letter-spacing: 0.3em;
+    }
+
+    .finale__title {
+        width: 100%;
+
+        font-size: 13vw;
+
+        line-height: 0.88;
+    }
+
+    .finale__action {
+        display: block;
+
+        margin-top: 40px;
+    }
+
+    .finale__description {
+        font-size: 6px;
+    }
+
+    .finale__cta {
+        width: 100%;
+
+        margin-top: 27px;
+
+        padding: 17px 18px;
+    }
+
+
+    /* HERO BOTTOM */
+
+    .finale__hero-bottom {
+        right: 15px;
+        bottom: 25px;
+        left: 15px;
+    }
+
+
+    /* FOOTER */
+
+    .finale__footer {
+        padding:
+            55px 15px 25px;
+    }
+
+    .finale__footer-main {
+        display: block;
+
+        padding-bottom: 55px;
+    }
+
+    .finale__brand p {
+        margin-top: 20px;
+    }
+
+    .finale__nav {
+        margin-top: 50px;
+
+        gap: 20px;
+    }
+
+    .finale__nav a {
+        font-size: 8px;
+    }
+
+    .finale__footer-code {
+        align-items: flex-start;
+
+        margin-top: 50px;
+    }
+
+
+    /* FOOTER BOTTOM */
+
+    .finale__footer-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        gap: 25px;
+
+        padding-top: 22px;
+
+        line-height: 1.7;
+    }
+
+    .finale__footer-bottom button {
+        order: -1;
+
+        width: 100%;
+
+        justify-content: space-between;
+
+        padding-bottom: 20px;
+
+        border-bottom:
+            1px solid rgba(255, 255, 255, 0.07);
+    }
+}
+
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 480px) {
+    .finale__hero {
+        min-height: 88svh;
+
+        padding-top: 100px;
+    }
+
+    .finale__title {
+        font-size: 12.5vw;
+    }
+
+    .finale__x {
+        width: 125vw;
+    }
+}
+
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .finale__x-line,
+    .finale__title-line>span,
+    .finale__hero-content,
+    .finale__footer {
+        transform: none !important;
+    }
+}

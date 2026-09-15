@@ -160,7 +160,7 @@ export default function Machine() {
         <section
             ref={sectionRef}
             className="machine"
-            id="models"
+            id="machine"
         >
             {/* HEADER FIXE */}
 
