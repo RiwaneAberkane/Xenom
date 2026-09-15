@@ -12,7 +12,10 @@ export default function Hero() {
     const heroRef = useRef(null);
     const imageRef = useRef(null);
 
-    // Animation d'entrée du Hero
+    /* ========================================
+       ANIMATION D'ENTRÉE DU HERO
+    ======================================== */
+
     useEffect(() => {
         const ctx = gsap.context(() => {
             const timeline = gsap.timeline({
@@ -85,18 +88,25 @@ export default function Hero() {
         return () => ctx.revert();
     }, []);
 
-    // Micro-parallaxe uniquement sur les appareils avec souris
+    /* ========================================
+       MICRO-PARALLAXE DESKTOP
+    ======================================== */
+
     useEffect(() => {
         const hero = heroRef.current;
         const image = imageRef.current;
 
-        if (!hero || !image) return undefined;
+        if (!hero || !image) {
+            return undefined;
+        }
 
         const mediaQuery = window.matchMedia(
             '(pointer: fine) and (min-width: 801px)',
         );
 
-        if (!mediaQuery.matches) return undefined;
+        if (!mediaQuery.matches) {
+            return undefined;
+        }
 
         const moveX = gsap.quickTo(image, 'x', {
             duration: 1.5,
@@ -109,8 +119,11 @@ export default function Hero() {
         });
 
         const handleMouseMove = (event) => {
-            const x = event.clientX / window.innerWidth - 0.5;
-            const y = event.clientY / window.innerHeight - 0.5;
+            const x =
+                event.clientX / window.innerWidth - 0.5;
+
+            const y =
+                event.clientY / window.innerHeight - 0.5;
 
             moveX(x * -18);
             moveY(y * -10);
@@ -121,14 +134,32 @@ export default function Hero() {
             moveY(0);
         };
 
-        hero.addEventListener('mousemove', handleMouseMove);
-        hero.addEventListener('mouseleave', handleMouseLeave);
+        hero.addEventListener(
+            'mousemove',
+            handleMouseMove,
+        );
+
+        hero.addEventListener(
+            'mouseleave',
+            handleMouseLeave,
+        );
 
         return () => {
-            hero.removeEventListener('mousemove', handleMouseMove);
-            hero.removeEventListener('mouseleave', handleMouseLeave);
+            hero.removeEventListener(
+                'mousemove',
+                handleMouseMove,
+            );
+
+            hero.removeEventListener(
+                'mouseleave',
+                handleMouseLeave,
+            );
         };
     }, []);
+
+    /* ========================================
+       HERO
+    ======================================== */
 
     return (
         <section
@@ -140,33 +171,57 @@ export default function Hero() {
                 '--hero-mobile': `url(${heroMobileImage})`,
             }}
         >
+            {/* BACKGROUND */}
+
             <div
                 ref={imageRef}
                 className="hero__background"
                 aria-hidden="true"
             />
 
-            <div className="hero__overlay" aria-hidden="true" />
+            <div
+                className="hero__overlay"
+                aria-hidden="true"
+            />
+
+            {/* HEADER */}
 
             <Header />
 
+            {/* ====================================
+                CONTENT
+            ==================================== */}
+
             <div className="hero__content">
+
+                {/* EYEBROW */}
+
                 <div className="hero__eyebrow">
                     <span />
+
                     A NEW ERA BEGINS
                 </div>
 
+                {/* TITLE */}
+
                 <h1 className="hero__title">
                     <span className="hero__title-line">
-                        <span>BEYOND</span>
+                        <span>
+                            BEYOND
+                        </span>
                     </span>
 
                     <span className="hero__title-line">
                         <span>
-                            MOTION<span className="hero__dot">.</span>
+                            MOTION
+                            <span className="hero__dot">
+                                .
+                            </span>
                         </span>
                     </span>
                 </h1>
+
+                {/* DESCRIPTION */}
 
                 <p className="hero__description">
                     More than a car.
@@ -174,32 +229,80 @@ export default function Hero() {
                     A state of mind.
                 </p>
 
+                {/* ==================================
+                    ACTIONS
+                ================================== */}
+
                 <div className="hero__actions">
-                    <a className="hero__primary" href="#performance">
+
+                    {/* DISCOVER */}
+
+                    <a
+                        className="hero__primary"
+                        href="#performance"
+                    >
                         Discover Xenom
-                        <span>→</span>
+
+                        <span aria-hidden="true">
+                            →
+                        </span>
                     </a>
 
-                    <button className="hero__film" type="button">
-                        <span className="hero__play">▶</span>
-                        <span className="hero__film-label">Watch film</span>
+                    {/* WATCH FILM */}
+
+                    <button
+                        className="hero__film"
+                        type="button"
+                        aria-label="Watch Xenom film"
+                    >
+                        <span
+                            className="hero__play"
+                            aria-hidden="true"
+                        >
+                            <span className="hero__play-icon" />
+                        </span>
+
+                        <span className="hero__film-label">
+                            Watch film
+                        </span>
                     </button>
                 </div>
             </div>
 
+            {/* ====================================
+                FOOTER
+            ==================================== */}
+
             <div className="hero__footer">
+
+                {/* PAGINATION */}
+
                 <div className="hero__pagination">
-                    <strong>01</strong>
+                    <strong>
+                        01
+                    </strong>
 
                     <span className="hero__pagination-line" />
 
-                    <span>05</span>
+                    <span>
+                        05
+                    </span>
                 </div>
 
-                <a className="hero__scroll" href="#performance">
-                    <span>Scroll to explore</span>
+                {/* SCROLL */}
+
+                <a
+                    className="hero__scroll"
+                    href="#performance"
+                >
+                    <span>
+                        Scroll to explore
+                    </span>
+
                     <span className="hero__scroll-line" />
                 </a>
+
+                {/* EDITION */}
 
                 <span className="hero__edition">
                     XENOM

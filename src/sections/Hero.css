@@ -539,3 +539,50 @@
         animation: none;
     }
 }
+
+/* ========================================
+   PLAY ICON — SAFARI / IOS SAFE
+======================================== */
+
+.hero__play-icon {
+    display: block;
+
+    width: 0;
+    height: 0;
+
+    margin-left: 3px;
+
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 10px solid currentColor;
+
+    color: #f4f4f2;
+
+    opacity: 0.82;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.hero__play:hover .hero__play-icon {
+    opacity: 1;
+
+    transform: scale(1.08);
+}
+
+@media (max-width: 800px) {
+    .hero__play-icon {
+        margin-left: 2px;
+
+        border-top-width: 5px;
+        border-bottom-width: 5px;
+        border-left-width: 8px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero__play-icon {
+        transition: none;
+    }
+}
